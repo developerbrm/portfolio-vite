@@ -1,4 +1,4 @@
-const HeroSection = () => {
+const Hero = () => {
   return (
     <div className="h-screen w-full bg-linear-to-br from-violet-400 to-violet-600">
       <div className="grid h-full place-content-center text-white">
@@ -19,4 +19,4 @@ const HeroSection = () => {
   )
 }
 
-export default HeroSection
+export default Hero

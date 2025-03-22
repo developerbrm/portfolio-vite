@@ -1,10 +1,10 @@
-import HeroSection from './components/HeroSection'
+import Sections from './sections'
 
 function App() {
   return (
-    <div>
-      <HeroSection />
-    </div>
+    <main>
+      <Sections />
+    </main>
   )
 }
 

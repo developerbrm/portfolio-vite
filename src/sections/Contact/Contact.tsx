@@ -5,9 +5,9 @@ const Contact = () => {
   const inputStyles = `block w-full p-2 text-lg rounded-lg outline-0 border-2 border-white bg-white shadow-md text-md focus:border-purple-600 focus:ring-purple-600 transition`
 
   return (
-    <div className="h-full min-h-screen w-full bg-linear-to-br from-teal-400 to-teal-600">
+    <div className="h-full min-h-screen w-full bg-linear-to-br from-teal-300 to-teal-600">
       <div className="mx-auto grid h-full min-h-screen max-w-5xl place-content-center gap-10 text-white">
-        <div className="rounded-md p-2 leading-3 text-nowrap text-white/80">
+        <div className="rounded-md p-2 leading-3 text-nowrap text-white/90">
           <h2 className="text-5xl drop-shadow-md">
             <strong className="font-medium drop-shadow-md">
               How to contact me ?

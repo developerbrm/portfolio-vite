@@ -1,4 +1,4 @@
-import Contact from './Contact'
+import Contact from './Contact/Contact'
 import Hero from './Hero'
 
 const Sections = () => {

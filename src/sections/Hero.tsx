@@ -1,3 +1,5 @@
+import SocialLinks from './SocialLinks'
+
 const Hero = () => {
   return (
     <div className="h-screen w-full bg-linear-to-br from-violet-400 to-violet-600">
@@ -9,9 +11,12 @@ const Hero = () => {
           </h1>
           <div className="text-3xl">
             <div className="my-2 drop-shadow-md">
-              an experienced Front-End developer
+              An experienced Front-End developer
             </div>
-            {/* <div className="">and I know how how to do Front-End Stuffs</div> */}
+
+            <div className="opacity-80">
+              <SocialLinks iconsStyles="text-xl" />
+            </div>
           </div>
         </div>
       </div>

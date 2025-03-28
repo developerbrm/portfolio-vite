@@ -17,7 +17,7 @@ const Contact = () => {
             OR
           </div>
           <div className="flex justify-center">
-            <SocialLinks />
+            <SocialLinks iconsStyles="text-5xl" />
           </div>
         </div>
       </div>

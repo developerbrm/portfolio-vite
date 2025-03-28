@@ -1,6 +1,11 @@
 import { SOCIAL_LINKS } from '../utilities/utilities'
 
-const SocialLinks = () => {
+interface SocialLinks {
+  iconsStyles: string
+}
+
+const SocialLinks = (props: SocialLinks) => {
+  const { iconsStyles } = props
   return (
     <div className="flex gap-1">
       {SOCIAL_LINKS.map((link) => {
@@ -11,7 +16,7 @@ const SocialLinks = () => {
             target="_blank"
             className="grid place-content-center rounded-full p-2 text-white/80 transition hover:-translate-y-0.5 hover:scale-105 hover:bg-white/10 hover:text-white/90 focus:-translate-y-0.5 focus:scale-105 focus:bg-white/10 focus:text-white active:-translate-y-0.5 active:scale-95 active:bg-white/10 active:text-white/90"
           >
-            <link.Icon className="text-4xl drop-shadow-md" />
+            <link.Icon className={`${iconsStyles} drop-shadow-md`} />
           </a>
         )
       })}

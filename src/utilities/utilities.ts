@@ -1,6 +1,7 @@
 import { FaGithub, FaLinkedinIn } from 'react-icons/fa6'
 import { IoDocumentText } from 'react-icons/io5'
 import { MdMail } from 'react-icons/md'
+import { ContactFormFieldProps } from '../sections/Contact/ContactFormField'
 
 export const SOCIAL_LINKS = [
   {
@@ -26,5 +27,35 @@ export const SOCIAL_LINKS = [
     href: 'https://flowcv.com/resume/fudrr1bjnr/',
     Icon: IoDocumentText,
     title: 'Resume',
+  },
+]
+
+export const formFieldsArr: ContactFormFieldProps[] = [
+  {
+    Element: 'input',
+    type: 'text',
+    name: 'name',
+    label: 'Your full name',
+    placeholder: 'John Doe',
+    required: true,
+  },
+
+  {
+    Element: 'input',
+    type: 'email',
+    name: 'email',
+    label: 'Your email',
+    placeholder: 'abc@xyz.com',
+    required: true,
+  },
+
+  {
+    Element: 'textarea',
+    type: 'text',
+    name: 'message',
+    label: 'Your message',
+    placeholder: 'Your message',
+    // required: true,
+    rows: 3,
   },
 ]

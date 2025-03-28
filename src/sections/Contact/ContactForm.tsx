@@ -1,42 +1,41 @@
-const ContactForm = () => {
-  const labelStyles = 'group'
-  const labelDivStyles =
-    'mb-1 block font-medium text-gray-700 group-has-[:required]:after:content-["*"] group-has-[:required]:after:ml-1 group-has-[:required]:after:text-rose-600'
-  const inputStyles = `block w-full p-2 text-lg rounded-lg outline-0 border-2 border-white bg-white shadow-md text-md focus:border-purple-600 focus:ring-purple-600 transition`
+import ContactFormField, { ContactFormFieldProps } from './ContactFormField'
 
+const formFieldsArr: ContactFormFieldProps[] = [
+  {
+    Element: 'input',
+    type: 'text',
+    name: 'name',
+    label: 'Your full name',
+    placeholder: 'John Doe',
+    required: true,
+  },
+
+  {
+    Element: 'input',
+    type: 'email',
+    name: 'email',
+    label: 'Your email',
+    placeholder: 'abc@xyz.com',
+    required: true,
+  },
+
+  {
+    Element: 'textarea',
+    type: 'text',
+    name: 'message',
+    label: 'Your message',
+    placeholder: 'Your message',
+    // required: true,
+    rows: 3,
+  },
+]
+
+const ContactForm = () => {
   return (
     <form className="text-normal mx-auto grid w-sm gap-4 text-gray-800">
-      <label className={labelStyles}>
-        <div className={labelDivStyles}>Your full name</div>
-        <input
-          type="text"
-          name="name"
-          className={inputStyles}
-          placeholder="John Doe"
-          required
-        />
-      </label>
-
-      <label className={labelStyles}>
-        <div className={labelDivStyles}>Your email</div>
-        <input
-          type="email"
-          name="email"
-          className={inputStyles}
-          placeholder="abc@xyz.com"
-          required
-        />
-      </label>
-
-      <label className={labelStyles}>
-        <div className={labelDivStyles}>Your message</div>
-        <textarea
-          name="message"
-          rows={4}
-          className={inputStyles}
-          placeholder="Leave a comment..."
-        ></textarea>
-      </label>
+      {formFieldsArr.map((field) => {
+        return <ContactFormField key={field.name} {...field} />
+      })}
 
       <button
         type="submit"

@@ -1,0 +1,79 @@
+import { zodResolver } from '@hookform/resolvers/zod'
+import axios from 'axios'
+import { FormProvider, useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
+import { z } from 'zod'
+import LoadingSpinner from '../../components/LoadingSpinner'
+import { APP_ROUTES, constructApiUrl } from '../../utilities/route-helpers'
+import { commonToastOptions, formFieldsArr } from '../../utilities/utilities'
+import ContactFormField from './ContactFormField'
+
+const ContactSchema = z.object({
+  name: z
+    .string()
+    .min(5, { message: 'Must be 5 or more characters long' })
+    .max(50, { message: 'Must be 50 or less characters long' }),
+  email: z.string().email({ message: 'Invalid email address' }),
+  message: z
+    .string()
+    .min(5, { message: 'Must be 5 or more characters long' })
+    .max(500, { message: 'Must be 500 or less characters long' }),
+})
+
+export type ContactFormValues = z.infer<typeof ContactSchema>
+
+const ContactForm = () => {
+  const methods = useForm<ContactFormValues>({
+    resolver: zodResolver(ContactSchema),
+  })
+
+  const handleFormSubmit = async (data: ContactFormValues) => {
+    const toastId = toast.loading('Submitting the form ...')
+
+    await axios
+      .post(constructApiUrl(APP_ROUTES.SUBMIT_FORM), data)
+      .then((res) => {
+        methods.reset()
+
+        toast.update(toastId, {
+          ...commonToastOptions,
+          render: res.data,
+          type: 'success',
+          isLoading: false,
+        })
+      })
+      .catch((err) =>
+        toast.update(toastId, {
+          ...commonToastOptions,
+          render: err?.data ?? 'Failed to submit form',
+          type: 'error',
+          isLoading: false,
+        })
+      )
+  }
+
+  return (
+    <FormProvider {...methods}>
+      <form
+        onSubmit={methods.handleSubmit(handleFormSubmit)}
+        className="text-normal mx-auto grid w-full gap-4 text-gray-800 md:w-sm"
+      >
+        {formFieldsArr.map((field) => {
+          return <ContactFormField key={field.name} {...field} />
+        })}
+
+        <button
+          type="submit"
+          className="mt-5 grid cursor-pointer grid-flow-col place-content-center items-center gap-2 rounded-lg bg-purple-200 p-3 text-center text-lg font-medium text-purple-600 shadow-md transition hover:bg-purple-600 hover:text-white focus:bg-purple-600 focus:text-white"
+        >
+          {methods.formState.isSubmitting && (
+            <LoadingSpinner svgStyles="!h-5 !w-5 !fill-purple-600" />
+          )}
+          <span>Submit</span>
+        </button>
+      </form>
+    </FormProvider>
+  )
+}
+
+export default ContactForm

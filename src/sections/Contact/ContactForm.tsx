@@ -1,11 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { FormProvider, useForm } from 'react-hook-form'
-import { z } from 'zod'
-import { formFieldsArr } from '../../utilities/utilities'
-import ContactFormField from './ContactFormField'
 import axios from 'axios'
-import { APP_ROUTES, constructApiUrl } from '../../utilities/route-helpers'
+import { FormProvider, useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
+import { z } from 'zod'
 import LoadingSpinner from '../../components/LoadingSpinner'
+import { APP_ROUTES, constructApiUrl } from '../../utilities/route-helpers'
+import { commonToastOptions, formFieldsArr } from '../../utilities/utilities'
+import ContactFormField from './ContactFormField'
 
 const ContactSchema = z.object({
   name: z
@@ -27,17 +28,35 @@ const ContactForm = () => {
   })
 
   const handleFormSubmit = async (data: ContactFormValues) => {
+    const toastId = toast.loading('Submitting the form ...')
+
     await axios
       .post(constructApiUrl(APP_ROUTES.SUBMIT_FORM), data)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err))
+      .then((res) => {
+        methods.reset()
+
+        toast.update(toastId, {
+          ...commonToastOptions,
+          render: res.data,
+          type: 'success',
+          isLoading: false,
+        })
+      })
+      .catch((err) =>
+        toast.update(toastId, {
+          ...commonToastOptions,
+          render: err?.data ?? 'Failed to submit form',
+          type: 'error',
+          isLoading: false,
+        })
+      )
   }
 
   return (
     <FormProvider {...methods}>
       <form
         onSubmit={methods.handleSubmit(handleFormSubmit)}
-        className="text-normal mx-auto grid w-sm gap-4 text-gray-800"
+        className="text-normal mx-auto grid w-full gap-4 text-gray-800 md:w-sm"
       >
         {formFieldsArr.map((field) => {
           return <ContactFormField key={field.name} {...field} />

@@ -1,8 +1,9 @@
 import { FaGithub, FaLinkedinIn } from 'react-icons/fa6'
 import { IoDocumentText } from 'react-icons/io5'
 import { MdMail } from 'react-icons/md'
-import { ContactFormFieldProps } from '../sections/Contact/ContactFormField'
 import { ContactFormValues } from '../sections/Contact/ContactForm'
+import { ContactFormFieldProps } from '../sections/Contact/ContactFormField'
+import { Flip } from 'react-toastify'
 
 export const SOCIAL_LINKS = [
   {
@@ -66,3 +67,8 @@ export const getFormLabel = (name: keyof ContactFormValues) =>
 
 export const capitalize = (str: string) =>
   str.charAt(0).toUpperCase() + str.slice(1)
+
+export const commonToastOptions = {
+  autoClose: 2000,
+  transition: Flip,
+}

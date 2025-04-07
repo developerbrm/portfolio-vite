@@ -30,7 +30,7 @@ const ContactFormField = (props: ContactFormFieldProps) => {
 
   const labelStyles = 'group'
   const labelDivStyles = `mb-1 block font-medium text-gray-700 ${required ? 'after:content-["*"] after:ml-1 after:text-rose-600' : ''}`
-  const inputStyles = `block w-full p-2 text-lg rounded-lg outline-0 border-2 border-white bg-white shadow-md text-md focus:border-purple-600 focus:ring-purple-600 transition ${error ? '!ring-rose-500 !border-rose-500' : ''}`
+  const inputStyles = `block w-full p-2 text-lg rounded-lg outline-0 border-2 border-white bg-white shadow-md text-md focus:border-purple-600 focus:ring-purple-600 transition ${error ? '!ring-rose-800 !border-rose-800' : ''}`
 
   return (
     <label className={labelStyles}>
@@ -45,7 +45,7 @@ const ContactFormField = (props: ContactFormFieldProps) => {
       />
 
       {error && (
-        <span className="text-sm text-rose-800">{error as string}</span>
+        <span className="text-sm text-rose-900">{error as string}</span>
       )}
     </label>
   )

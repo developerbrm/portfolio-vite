@@ -1,16 +1,18 @@
 import nodemailer from 'nodemailer'
+import { ContactFormValues } from '../sections/Contact/ContactForm'
+import { capitalize } from '../utilities/utilities'
 
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
   secure: true,
   port: 465,
   auth: {
-    user: 'dev.brm.acc@gmail.com',
-    pass: 'pass',
+    user: import.meta.env.EMAIL_USER,
+    pass: import.meta.env.EMAIL_PASSWORD,
   },
 })
 
-transporter.verify(function (error, success) {
+transporter.verify(function (error) {
   if (error) {
     console.log(error)
   } else {
@@ -18,21 +20,31 @@ transporter.verify(function (error, success) {
   }
 })
 
-export async function sendMail() {
+export async function sendMail(data: ContactFormValues) {
   const message = {
-    from: '"Message | Portfolio site 👻"  <dev.brm.acc@gmail.com>',
+    from: '"Message Received | Portfolio site 👻" <dev.brm.acc@gmail.com>',
     to: 'developerbrm@gmail.com',
-    subject: 'Message from Portfolio site',
-    html: '<b>Hello world?</b>',
+    subject: `Message from ${data.name}`,
+    html: ``,
   }
 
-  let info = {}
+  let html = ``
+
+  for (const [key, value] of Object.entries(data)) {
+    html += `<p><strong>${capitalize(key)}: </strong>${value}</p>`
+  }
+
+  message.html = html
 
   try {
-    info = await transporter.sendMail(message)
+    const info = await transporter.sendMail(message)
+
+    if (!info.accepted) throw new Error('Failed to send email')
+
+    return info
   } catch (error) {
     console.log(error)
-  }
 
-  return info
+    throw new Error('Failed to send email')
+  }
 }

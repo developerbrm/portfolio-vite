@@ -15,9 +15,9 @@ app.post(APP_ROUTES.SUBMIT_FORM, (req, res) => {
   const data = req.body
 
   sendMail(data)
-    .then((info) => res.send(info))
+    .then(() => res.send('Form submitted successfully'))
     .catch((err) => {
-      res.send(err)
+      res.status(500).send('Failed to submit form')
       console.log(err)
     })
 })

@@ -2,6 +2,7 @@ import { FaGithub, FaLinkedinIn } from 'react-icons/fa6'
 import { IoDocumentText } from 'react-icons/io5'
 import { MdMail } from 'react-icons/md'
 import { ContactFormFieldProps } from '../sections/Contact/ContactFormField'
+import { ContactFormValues } from '../sections/Contact/ContactForm'
 
 export const SOCIAL_LINKS = [
   {
@@ -59,3 +60,9 @@ export const formFieldsArr: ContactFormFieldProps[] = [
     rows: 3,
   },
 ]
+
+export const getFormLabel = (name: keyof ContactFormValues) =>
+  formFieldsArr.find((field) => field.name === name)?.label
+
+export const capitalize = (str: string) =>
+  str.charAt(0).toUpperCase() + str.slice(1)

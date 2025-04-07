@@ -3,6 +3,9 @@ import { FormProvider, useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { formFieldsArr } from '../../utilities/utilities'
 import ContactFormField from './ContactFormField'
+import axios from 'axios'
+import { APP_ROUTES, constructApiUrl } from '../../utilities/route-helpers'
+import LoadingSpinner from '../../components/LoadingSpinner'
 
 const ContactSchema = z.object({
   name: z
@@ -23,7 +26,12 @@ const ContactForm = () => {
     resolver: zodResolver(ContactSchema),
   })
 
-  const handleFormSubmit = (data) => console.log(data)
+  const handleFormSubmit = async (data: ContactFormValues) => {
+    await axios
+      .post(constructApiUrl(APP_ROUTES.SUBMIT_FORM), data)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err))
+  }
 
   return (
     <FormProvider {...methods}>
@@ -37,9 +45,12 @@ const ContactForm = () => {
 
         <button
           type="submit"
-          className="mt-5 cursor-pointer rounded-lg bg-purple-200 p-3 text-center text-lg font-medium text-purple-600 shadow-md transition hover:bg-purple-600 hover:text-white focus:bg-purple-600 focus:text-white"
+          className="mt-5 grid cursor-pointer grid-flow-col place-content-center items-center gap-2 rounded-lg bg-purple-200 p-3 text-center text-lg font-medium text-purple-600 shadow-md transition hover:bg-purple-600 hover:text-white focus:bg-purple-600 focus:text-white"
         >
-          Submit
+          {methods.formState.isSubmitting && (
+            <LoadingSpinner svgStyles="!h-5 !w-5 !fill-purple-600" />
+          )}
+          <span>Submit</span>
         </button>
       </form>
     </FormProvider>

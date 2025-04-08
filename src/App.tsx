@@ -11,7 +11,7 @@ function App() {
       <ToastContainer
         autoClose={1500}
         transition={Flip}
-        position={window.innerWidth > 600 ? 'top-right' : 'bottom-center'}
+        position={window.innerWidth > 600 ? 'top-right' : 'top-center'}
       />
     </>
   )

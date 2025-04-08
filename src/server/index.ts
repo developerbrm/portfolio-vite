@@ -1,27 +1,48 @@
-import bodyParser from 'body-parser'
-import cors from 'cors'
-import express from 'express'
+import { BunRequest, serve } from 'bun'
 import { APP_ROUTES, SERVER_PORT } from '../utilities/route-helpers'
 import { sendMail } from './emailer'
 
-const app = express()
 const port = SERVER_PORT
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded())
-app.use(cors())
+const responseOptions = {
+  headers: {
+    'Content-Type': 'text/plain',
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'POST',
+    'Access-Control-Allow-Headers': 'Content-Type',
+  },
+}
 
-app.post(APP_ROUTES.SUBMIT_FORM, (req, res) => {
-  const data = req.body
+serve({
+  port,
+  hostname: 'localhost',
+  routes: {
+    [APP_ROUTES.SUBMIT_FORM]: {
+      OPTIONS: () => new Response(null, responseOptions),
+      POST: async (req: BunRequest) => {
+        try {
+          const data = (await req.json().catch(console.error)) ?? {}
+          await sendMail(data)
 
-  sendMail(data)
-    .then(() => res.send('Form submitted successfully'))
-    .catch((err) => {
-      res.status(500).send('Failed to submit form')
-      console.log(err)
-    })
+          if (!Object.keys(data).length) {
+            return new Response('No data received', {
+              ...responseOptions,
+              status: 400,
+            })
+          }
+
+          return new Response('Form submitted successfully', responseOptions)
+        } catch (err) {
+          console.log(err)
+
+          return new Response('Failed to submit form', {
+            ...responseOptions,
+            status: 500,
+          })
+        }
+      },
+    },
+  },
 })
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`)
-})
+console.log(`Server running on ${port}`)

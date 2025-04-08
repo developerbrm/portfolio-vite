@@ -22,7 +22,7 @@ transporter.verify(function (error) {
 
 export async function sendMail(data: ContactFormValues) {
   const message = {
-    from: '"Message Received | Portfolio site 👻" <dev.brm.acc@gmail.com>',
+    from: '"Form submitted | Portfolio site 👻" <dev.brm.acc@gmail.com>',
     to: 'developerbrm@gmail.com',
     subject: `Message from ${data.name}`,
     html: ``,

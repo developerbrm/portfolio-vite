@@ -1,8 +1,8 @@
 import { BunRequest, serve } from 'bun'
-import { APP_ROUTES, SERVER_PORT } from '../utilities/route-helpers'
+import { APP_ROUTES, getServerPort } from '../utilities/route-helpers'
 import { sendMail } from './emailer'
 
-const port = SERVER_PORT
+const port = getServerPort()
 
 const responseOptions = {
   headers: {

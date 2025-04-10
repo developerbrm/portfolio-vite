@@ -33,14 +33,14 @@ jobs:
         uses: actions/checkout@v4
       - name: Set up bun
         uses: oven-sh/setup-bun@v2
+      - name: Install dependencies
+        run: bun install
+      - name: Build
         env:
           EMAIL_USER: ${{ secrets.EMAIL_USER }}
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
           VITE_BASE_SERVER_URL: ${{ secrets.VITE_BASE_SERVER_URL }}
           VITE_SERVER_PORT: ${{ secrets.VITE_SERVER_PORT }}
-      - name: Install dependencies
-        run: bun install
-      - name: Build
         run: bun run build
       - name: Setup Pages
         uses: actions/configure-pages@v4

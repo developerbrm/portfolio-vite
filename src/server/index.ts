@@ -15,7 +15,6 @@ const responseOptions = {
 
 serve({
   port,
-  hostname: 'localhost',
   routes: {
     [APP_ROUTES.SUBMIT_FORM]: {
       OPTIONS: () => new Response(null, responseOptions),

@@ -2,7 +2,7 @@ export const APP_ROUTES = {
   SUBMIT_FORM: '/submit-form',
 }
 
-export const SERVER_PORT = import.meta.env.PORT ?? 3000
+export const SERVER_PORT = process.env.PORT ?? 3000
 export const BASE_SERVER_URL =
   import.meta.env.BASE_SERVER_URL ?? `http://localhost:${SERVER_PORT}`
 

@@ -18,6 +18,7 @@ const ContactSchema = z.object({
     .string()
     .min(5, { message: 'Must be 5 or more characters long' })
     .max(500, { message: 'Must be 500 or less characters long' }),
+  website: z.string().nullable().optional(),
 })
 
 export type ContactFormValues = z.infer<typeof ContactSchema>
@@ -30,8 +31,13 @@ const ContactForm = () => {
   const handleFormSubmit = async (data: ContactFormValues) => {
     const toastId = toast.loading('Submitting the form ...')
 
+    const body = {
+      ...data,
+      website: window.location.href,
+    }
+
     await axios
-      .post(constructApiUrl(APP_ROUTES.SUBMIT_FORM), data)
+      .post(constructApiUrl(APP_ROUTES.SUBMIT_FORM), body)
       .then((res) => {
         methods.reset()
 

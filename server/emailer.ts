@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer'
-import { ContactFormValues } from '../sections/Contact/ContactForm'
-import { capitalize } from '../utilities/utilities'
+import type { ContactFormValues } from '../src/sections/Contact/ContactForm'
+import { capitalize } from '../src/utilities/utilities'
 
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',

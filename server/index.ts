@@ -1,5 +1,7 @@
-import { BunRequest, serve } from 'bun'
-import { APP_ROUTES, getServerPort } from '../utilities/route-helpers'
+import type { BunRequest } from 'bun'
+import { serve } from 'bun'
+import type { ContactFormValues } from '../src/sections/Contact/ContactForm'
+import { APP_ROUTES, getServerPort } from '../src/utilities/route-helpers'
 import { sendMail } from './emailer'
 
 const port = getServerPort()
@@ -20,7 +22,10 @@ serve({
       OPTIONS: () => new Response(null, responseOptions),
       POST: async (req: BunRequest) => {
         try {
-          const data = (await req.json().catch(console.error)) ?? {}
+          const data = (await req
+            .json()
+            .catch(console.error)) as ContactFormValues
+
           await sendMail(data)
 
           if (!Object.keys(data).length) {

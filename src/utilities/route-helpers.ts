@@ -20,11 +20,19 @@ const port = getServerPort()
 export const BASE_SERVER_URL =
   import.meta.env.VITE_BASE_SERVER_URL ?? `http://localhost:${port}`
 
-export const constructApiUrl = (route: string) => `${BASE_SERVER_URL}${route}`
+export const constructApiUrl = (route: string) => {
+  const formattedBaseUrl = BASE_SERVER_URL.endsWith('/')
+    ? BASE_SERVER_URL
+    : `${BASE_SERVER_URL}/`
+  const formattedRoute = route.startsWith('/') ? route.slice(1) : route
+
+  const finalUrl = `${formattedBaseUrl}${formattedRoute}`
+  return finalUrl
+}
 
 export const commonResponseOptions = {
   headers: {
-    'Content-Type': 'application/json',
+    'Content-Type': 'text/plain',
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type',
   },
@@ -38,4 +46,5 @@ export const POSTResponseOptions = {
 export const GETResponseOptions = {
   ...commonResponseOptions,
   'Access-Control-Allow-Methods': 'GET',
+  'Content-Type': 'application/json',
 }

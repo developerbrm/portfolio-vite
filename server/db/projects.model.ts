@@ -5,4 +5,6 @@ export interface ProjectItem {
   title: string
   description: string
   imageUrl: string
+  githubUrl: string
+  liveUrl: string
 }

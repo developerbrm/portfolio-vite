@@ -7,4 +7,13 @@ if (!MONGODB_URI) {
   )
 }
 
-export const mongoClient: MongoClient = await MongoClient.connect(MONGODB_URI)
+console.log('Trying to connect to MongoDB')
+
+export const mongoClient: MongoClient | null =
+  (await MongoClient.connect(MONGODB_URI)
+    .then((client) => {
+      console.log('Connected to MongoDB')
+
+      return client
+    })
+    .catch(console.error)) ?? null

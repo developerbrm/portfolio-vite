@@ -8,7 +8,6 @@ const Projects = () => {
     queryKey: ['projects'],
   })
 
-  if (isLoading) return <div>Loading...</div>
   if (error) return <div>Error</div>
 
   return (
@@ -19,9 +18,13 @@ const Projects = () => {
             <strong className="font-medium drop-shadow-md">My Projects</strong>
           </h2>
         </div>
-        <div className="grid gap-32">
+        <div className="grid gap-10 md:gap-32">
           {data?.map((project) => (
-            <RenderProjectItem key={project._id} project={project} />
+            <RenderProjectItem
+              key={project._id}
+              isLoading={isLoading}
+              project={project}
+            />
           ))}
         </div>
       </div>

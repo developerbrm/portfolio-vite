@@ -69,6 +69,7 @@ const ContactForm = () => {
         })}
 
         <button
+          disabled={methods.formState.isSubmitting}
           type="submit"
           className="mt-5 grid cursor-pointer grid-flow-col place-content-center items-center gap-2 rounded-lg bg-purple-200 p-3 text-center text-lg font-medium text-purple-600 shadow-md transition hover:bg-purple-600 hover:text-white focus:bg-purple-600 focus:text-white"
         >

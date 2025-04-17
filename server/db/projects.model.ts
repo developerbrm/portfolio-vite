@@ -1,10 +1,9 @@
-import type { ObjectId } from 'mongodb'
-
 export interface ProjectItem {
-  _id: ObjectId
+  _id: string
   title: string
   description: string
   imageUrl: string
+  imageAlt: string
   githubUrl: string
   liveUrl: string
 }

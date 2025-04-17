@@ -4,6 +4,7 @@ export interface ProjectItem {
   description: string
   imageUrl: string
   imageAlt: string
+  blurImageUrl: string
   githubUrl: string
   liveUrl: string
 }

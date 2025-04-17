@@ -1,27 +1,49 @@
 import { FiExternalLink } from 'react-icons/fi'
 import type { ProjectItem } from '../../../server/db/projects.model'
-import { constructImageUrl } from '../../utilities/utilities'
+import RenderProjectImages from './RenderProjectImages'
 
 interface Props {
   project: ProjectItem
 }
 
 const RenderProjectItem = (props: Props) => {
-  const { title, description, imageUrl, githubUrl, liveUrl, imageAlt } =
-    props.project
-
-  const imageSrc = constructImageUrl(imageUrl)
+  const {
+    title,
+    description,
+    imageUrl,
+    githubUrl,
+    liveUrl,
+    imageAlt,
+    blurImageUrl,
+  } = props.project
 
   return (
-    <div className="relative px-6 md:h-screen">
-      <div className="relative z-10 grid gap-10 md:grid-cols-[300px_1fr]">
-        <img
-          alt={imageAlt}
-          src={imageSrc}
-          className="h-full w-full rounded-lg object-contain shadow-2xl"
+    <div className="relative px-6">
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl overflow-hidden rounded-lg shadow-2xl md:h-[600px] md:grid-cols-[500px_1fr]">
+        <RenderProjectImages
+          imageAlt={imageAlt}
+          imageUrl={imageUrl}
+          blurImageUrl={blurImageUrl}
+          imageStyles="absolute inset-0 -z-0 h-full w-full scale-105 object-cover opacity-100 blur-sm"
         />
-        <div>
-          <h3 className="text-4xl font-medium opacity-90">{title}</h3>
+
+        <div className="relative z-10 h-full">
+          <RenderProjectImages
+            imageAlt={imageAlt}
+            imageUrl={imageUrl}
+            imageStyles="relative z-10 h-full w-full object-contain object-center"
+          />
+
+          <RenderProjectImages
+            imageAlt={imageAlt}
+            imageUrl={imageUrl}
+            imageStyles="absolute inset-0 -z-0 h-full w-full  object-cover blur-xs"
+          />
+        </div>
+        <div className="relative z-10 bg-slate-900/90 p-6 md:p-10">
+          <h3 className="text-4xl font-medium opacity-90 md:text-5xl">
+            {title}
+          </h3>
           <p className="py-6">{description}</p>
 
           <div className="flex gap-3">
@@ -44,11 +66,6 @@ const RenderProjectItem = (props: Props) => {
           </div>
         </div>
       </div>
-      {/* <img
-        alt={imageAlt}
-        src={imageSrc}
-        className="absolute inset-0 -z-0 h-full w-full scale-200 object-cover opacity-100 blur-3xl"
-      /> */}
     </div>
   )
 }

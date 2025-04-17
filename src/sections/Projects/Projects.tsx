@@ -12,7 +12,7 @@ const Projects = () => {
   if (error) return <div>Error</div>
 
   return (
-    <div className="h-full min-h-screen w-full overflow-hidden bg-linear-to-br from-blue-400 to-blue-500 py-20">
+    <div className="h-full min-h-screen w-full overflow-hidden bg-linear-to-br from-teal-400 to-teal-500 py-20">
       <div className="mx-auto grid h-full min-h-screen gap-10 text-white">
         <div className="mb-5 justify-self-center rounded-md text-center leading-3 text-nowrap text-white/90 md:text-start">
           <h2 className="text-5xl drop-shadow-md">

@@ -1,4 +1,16 @@
+import { useQuery } from '@tanstack/react-query'
+import { fetchProjects } from '../../utilities/utilities'
+import RenderProjectItem from './RenderProjectItem'
+
 const Projects = () => {
+  const { error, isLoading, data } = useQuery({
+    queryFn: fetchProjects,
+    queryKey: ['projects'],
+  })
+
+  if (isLoading) return <div>Loading...</div>
+  if (error) return <div>Error</div>
+
   return (
     <div className="h-full min-h-screen w-full overflow-hidden bg-linear-to-br from-blue-400 to-blue-500 py-20">
       <div className="mx-auto grid h-full min-h-screen gap-10 text-white">
@@ -7,28 +19,10 @@ const Projects = () => {
             <strong className="font-medium drop-shadow-md">My Projects</strong>
           </h2>
         </div>
-
-        <div className="hero relative min-h-screen">
-          <div className="hero-content relative z-10 flex-col lg:flex-row">
-            <img
-              src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
-              className="max-w-sm rounded-lg shadow-2xl"
-            />
-            <div>
-              <h1 className="text-5xl font-bold">Box Office News!</h1>
-              <p className="py-6">
-                Provident cupiditate voluptatem et in. Quaerat fugiat ut
-                assumenda excepturi exercitationem quasi. In deleniti eaque aut
-                repudiandae et a id nisi.
-              </p>
-              <button className="btn btn-primary">Get Started</button>
-            </div>
-          </div>
-
-          <img
-            src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
-            className="absolute inset-0 -z-0 h-full w-full scale-200 object-cover opacity-100 blur-3xl"
-          />
+        <div className="grid gap-32">
+          {data?.map((project) => (
+            <RenderProjectItem key={project._id} project={project} />
+          ))}
         </div>
       </div>
     </div>

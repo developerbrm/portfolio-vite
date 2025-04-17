@@ -4,9 +4,12 @@ import RenderProjectImages from './RenderProjectImages'
 
 interface Props {
   project: ProjectItem
+  isLoading: boolean
 }
 
 const RenderProjectItem = (props: Props) => {
+  const { project, isLoading } = props
+
   const {
     title,
     description,
@@ -15,7 +18,15 @@ const RenderProjectItem = (props: Props) => {
     liveUrl,
     imageAlt,
     blurImageUrl,
-  } = props.project
+  } = project
+
+  if (isLoading) {
+    return (
+      <div className="mx-auto grid h-80 w-full max-w-7xl overflow-hidden rounded-lg px-6 md:h-[600px]">
+        <div className="skeleton h-full w-full"></div>
+      </div>
+    )
+  }
 
   return (
     <div className="relative px-6">
@@ -46,7 +57,7 @@ const RenderProjectItem = (props: Props) => {
           </h3>
           <p className="py-6">{description}</p>
 
-          <div className="flex gap-3">
+          <div className="grid gap-3 md:grid-flow-col md:justify-start">
             <a
               target="_blank"
               href={githubUrl}

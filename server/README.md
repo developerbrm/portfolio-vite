@@ -1,4 +1,16 @@
-# server
+# Server README
+
+This directory contains the server code for the website.
+
+## Database
+
+The server uses a MongoDB database. The database is defined in the `db` directory.
+
+## Email
+
+The server sends emails using the `nodemailer` package.
+
+## Installation
 
 To install dependencies:
 

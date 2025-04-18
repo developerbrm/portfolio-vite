@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { fetchProjects } from '../../utilities/utilities'
 import RenderProjectItem from './RenderProjectItem'
+import RenderProjectItemSkeleton from './RenderProjectItemSkeleton'
 
 const Projects = () => {
   const { error, isLoading, data } = useQuery({
@@ -19,13 +20,13 @@ const Projects = () => {
           </h2>
         </div>
         <div className="grid gap-10 md:gap-32">
-          {data?.map((project) => (
-            <RenderProjectItem
-              key={project._id}
-              isLoading={isLoading}
-              project={project}
-            />
-          ))}
+          {isLoading ? (
+            <RenderProjectItemSkeleton />
+          ) : (
+            data?.map((project) => (
+              <RenderProjectItem key={project._id} project={project} />
+            ))
+          )}
         </div>
       </div>
     </div>

@@ -76,4 +76,4 @@ This project is licensed under the [MIT License](LICENSE).
 ## Acknowledgments
 
 - [Vite](https://vitejs.dev/)
-- [Your Name](https://your-portfolio-link.com)
+- [Braham Prakash](https://developerbrm.github.io/portfolio-vite/)

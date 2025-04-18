@@ -1,6 +1,6 @@
 import { FiExternalLink } from 'react-icons/fi'
 import type { ProjectItem } from '../../../server/db/projects.model'
-import RenderProjectImages from './RenderProjectImages'
+import RenderImage from './RenderImage'
 
 interface Props {
   project: ProjectItem
@@ -22,23 +22,25 @@ const RenderProjectItem = (props: Props) => {
   return (
     <div className="relative px-6">
       <div className="relative z-10 mx-auto grid w-full max-w-7xl overflow-hidden rounded-lg shadow-2xl md:h-[600px] md:grid-cols-[500px_1fr]">
-        <RenderProjectImages
+        <RenderImage
           imageAlt={imageAlt}
           imageUrl={imageUrl}
           blurImageUrl={blurImageUrl}
+          lazyLoad={true}
           imageStyles="absolute inset-0 -z-0 h-full w-full scale-105 object-cover opacity-100 blur-sm"
         />
 
         <div className="relative z-10 h-full">
-          <RenderProjectImages
+          <RenderImage
             imageAlt={imageAlt}
             imageUrl={imageUrl}
             imageStyles="relative z-10 h-full w-full object-contain object-center"
           />
 
-          <RenderProjectImages
+          <RenderImage
             imageAlt={imageAlt}
             imageUrl={imageUrl}
+            lazyLoad={true}
             imageStyles="absolute inset-0 -z-0 h-full w-full  object-cover blur-xs"
           />
         </div>

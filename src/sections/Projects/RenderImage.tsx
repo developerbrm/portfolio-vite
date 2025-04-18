@@ -5,10 +5,11 @@ interface Props {
   imageUrl: string
   imageAlt: string
   blurImageUrl?: string
+  lazyLoad?: boolean
 }
 
-const RenderProjectImages = (props: Props) => {
-  const { imageUrl, imageAlt, imageStyles, blurImageUrl } = props
+const RenderImage = (props: Props) => {
+  const { imageUrl, imageAlt, imageStyles, blurImageUrl, lazyLoad } = props
 
   const imageSrc = constructImageUrl(blurImageUrl ?? imageUrl)
 
@@ -16,9 +17,10 @@ const RenderProjectImages = (props: Props) => {
     <img
       alt={imageAlt}
       src={imageSrc}
+      loading={lazyLoad ? 'lazy' : 'eager'}
       className={`${imageStyles} block h-full w-full max-w-full`}
     />
   )
 }
 
-export default RenderProjectImages
+export default RenderImage

@@ -1,4 +1,4 @@
-import { SOCIAL_LINKS } from '../utilities/utilities'
+import { SOCIAL_LINKS } from '../utilities/constants'
 
 interface SocialLinks {
   iconsStyles: string

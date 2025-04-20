@@ -1,3 +1,5 @@
+import { appendSlash, removeStartSlash } from './utilities'
+
 export const APP_ROUTES = {
   SUBMIT_FORM: '/submit-form',
   GET_PROJECTS: '/get-projects',
@@ -21,10 +23,8 @@ export const BASE_SERVER_URL =
   import.meta.env.VITE_BASE_SERVER_URL ?? `http://localhost:${port}`
 
 export const constructApiUrl = (route: string) => {
-  const formattedBaseUrl = BASE_SERVER_URL.endsWith('/')
-    ? BASE_SERVER_URL
-    : `${BASE_SERVER_URL}/`
-  const formattedRoute = route.startsWith('/') ? route.slice(1) : route
+  const formattedBaseUrl = appendSlash(BASE_SERVER_URL)
+  const formattedRoute = removeStartSlash(route)
 
   const finalUrl = `${formattedBaseUrl}${formattedRoute}`
   return finalUrl

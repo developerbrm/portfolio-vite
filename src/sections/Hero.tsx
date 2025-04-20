@@ -1,5 +1,5 @@
 import SocialLinks from '../components/SocialLinks'
-import { HERO_SECTION_VIDEO_URL } from '../utilities/utilities'
+import { HERO_SECTION_VIDEO_URL } from '../utilities/constants'
 
 const Hero = () => {
   return (

@@ -5,8 +5,9 @@ import { toast } from 'react-toastify'
 import { z } from 'zod'
 import LoadingSpinner from '../../components/LoadingSpinner'
 import { APP_ROUTES, constructApiUrl } from '../../utilities/route-helpers'
-import { commonToastOptions, formFieldsArr } from '../../utilities/utilities'
+import { commonToastOptions } from '../../utilities/utilities'
 import ContactFormField from './ContactFormField'
+import { formFieldsArr } from '../../utilities/constants'
 
 const ContactSchema = z.object({
   name: z

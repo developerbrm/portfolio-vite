@@ -7,6 +7,10 @@ import { APP_ROUTES, constructApiUrl } from '../utilities/route-helpers'
 import { ContactFormValues } from '../sections/Contact/ContactForm'
 import { ContactFormFieldProps } from '../sections/Contact/ContactFormField'
 
+export const HERO_SECTION_VIDEO_URL = constructPubicMediaUrl(
+  '/hero/hero-video.mp4'
+)
+
 export const SOCIAL_LINKS = [
   {
     name: 'GitHub',
@@ -89,8 +93,8 @@ export const fetchProjects = async () => {
   return data
 }
 
-export const constructPubicMediaUrl = (imageUrl: string) => {
-  const baseUrl = appendSlash(window.location.origin)
+export function constructPubicMediaUrl(imageUrl: string) {
+  const baseUrl = appendSlash(window.location.href)
   const endPoint = removeStartSlash(imageUrl)
 
   return `${baseUrl}${endPoint}`

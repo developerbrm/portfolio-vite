@@ -1,4 +1,4 @@
-import { constructImageUrl } from '../../utilities/utilities'
+import { constructPubicMediaUrl } from '../../utilities/utilities'
 
 interface Props {
   imageStyles: string
@@ -11,7 +11,7 @@ interface Props {
 const RenderImage = (props: Props) => {
   const { imageUrl, imageAlt, imageStyles, blurImageUrl, lazyLoad } = props
 
-  const imageSrc = constructImageUrl(blurImageUrl ?? imageUrl)
+  const imageSrc = constructPubicMediaUrl(blurImageUrl ?? imageUrl)
 
   return (
     <img

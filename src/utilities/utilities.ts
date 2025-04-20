@@ -89,6 +89,6 @@ export const fetchProjects = async () => {
   return data
 }
 
-export const constructImageUrl = (imageUrl: string) => {
+export const constructPubicMediaUrl = (imageUrl: string) => {
   return `${window.location.href}${imageUrl}`
 }

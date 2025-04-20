@@ -2,11 +2,6 @@ import { FaGithub, FaLinkedinIn } from 'react-icons/fa6'
 import { IoDocumentText } from 'react-icons/io5'
 import { MdMail } from 'react-icons/md'
 import { ContactFormFieldProps } from '../sections/Contact/ContactFormField'
-import { constructPubicMediaUrl } from './utilities'
-
-export const HERO_SECTION_VIDEO_URL = constructPubicMediaUrl(
-  '/hero/hero-video.mp4'
-)
 
 export const SOCIAL_LINKS = [
   {

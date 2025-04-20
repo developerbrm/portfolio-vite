@@ -1,5 +1,7 @@
 import SocialLinks from '../components/SocialLinks'
-import { HERO_SECTION_VIDEO_URL } from '../utilities/constants'
+import { constructPubicMediaUrl } from '../utilities/utilities'
+
+const HERO_SECTION_VIDEO_URL = constructPubicMediaUrl('/hero/hero-video.mp4')
 
 const Hero = () => {
   return (

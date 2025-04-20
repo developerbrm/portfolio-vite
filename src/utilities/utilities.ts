@@ -29,15 +29,15 @@ export const fetchProjects = async () => {
   return data
 }
 
-export function constructPubicMediaUrl(imageUrl: string) {
-  const baseUrl = appendSlash(window.location.href)
-  const endPoint = removeStartSlash(imageUrl)
-
-  return `${baseUrl}${endPoint}`
-}
-
 export const appendSlash = (str: string) =>
   str.endsWith('/') ? str : `${str}/`
 
 export const removeStartSlash = (str: string) =>
   str.startsWith('/') ? str.slice(1) : str
+
+export const constructPubicMediaUrl = (imageUrl: string) => {
+  const baseUrl = appendSlash(window.location.href)
+  const endPoint = removeStartSlash(imageUrl)
+
+  return `${baseUrl}${endPoint}`
+}

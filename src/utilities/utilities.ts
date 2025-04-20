@@ -90,7 +90,10 @@ export const fetchProjects = async () => {
 }
 
 export const constructPubicMediaUrl = (imageUrl: string) => {
-  return `${window.location.href}${imageUrl}`
+  const baseUrl = appendSlash(window.location.origin)
+  const endPoint = removeStartSlash(imageUrl)
+
+  return `${baseUrl}${endPoint}`
 }
 
 export const appendSlash = (str: string) =>

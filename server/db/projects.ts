@@ -6,6 +6,6 @@ if (!mongoClient) {
 }
 
 const projectsCollection = mongoClient.db('Projects').collection('Projects')
-export const projects = (await projectsCollection
-  .find()
-  .toArray()) as ProjectItem[]
+export const projects = (await projectsCollection.find().toArray()).map(
+  (doc) => ({ ...doc, _id: doc._id.toString() }) as ProjectItem
+)

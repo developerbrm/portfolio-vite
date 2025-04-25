@@ -13,7 +13,7 @@ const Hero = () => {
         <div
           onPointerOver={() => setIsVideoBlurry(true)}
           onPointerLeave={() => setIsVideoBlurry(false)}
-          className={`${isVideoBlurry ? 'scale-105' : ''} rounded-md p-6 leading-3 text-white/70 transition-transform ease-in-out md:text-nowrap`}
+          className={`${isVideoBlurry ? 'scale-102' : ''} rounded-md p-6 leading-3 text-white/70 transition-transform ease-in-out md:text-nowrap`}
         >
           <p className="text-2xl font-medium drop-shadow-md md:text-3xl">
             Hello, I am

@@ -54,7 +54,7 @@ const RenderProjectItem = (props: Props) => {
             <a
               target="_blank"
               href={githubUrl}
-              className="btn btn-dash flex items-center gap-2"
+              className="btn btn-dash flex items-center gap-2 transition-transform hover:-translate-y-0.5"
             >
               Go to Github Repo
               <FiExternalLink />
@@ -62,7 +62,7 @@ const RenderProjectItem = (props: Props) => {
             <a
               target="_blank"
               href={liveUrl}
-              className="btn btn-primary flex items-center gap-2"
+              className="btn btn-primary flex items-center gap-2 transition-transform hover:-translate-y-0.5"
             >
               View Latest Build
               <FiExternalLink />

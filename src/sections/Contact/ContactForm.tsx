@@ -72,10 +72,10 @@ const ContactForm = () => {
         <button
           disabled={methods.formState.isSubmitting}
           type="submit"
-          className="mt-5 grid cursor-pointer grid-flow-col place-content-center items-center gap-2 rounded-lg bg-purple-200 p-3 text-center text-lg font-medium text-purple-600 shadow-md transition hover:bg-purple-600 hover:text-white focus:bg-purple-600 focus:text-white"
+          className="mt-5 grid cursor-pointer grid-flow-col place-content-center items-center gap-2 rounded-lg bg-white p-3 text-center text-lg font-medium text-amber-600 shadow-md transition hover:scale-105 hover:bg-amber-500 hover:text-white focus:bg-amber-500 focus:text-white"
         >
           {methods.formState.isSubmitting && (
-            <LoadingSpinner svgStyles="!h-5 !w-5 !fill-purple-600" />
+            <LoadingSpinner svgStyles="!h-5 !w-5 !fill-amber-600" />
           )}
           <span>Submit</span>
         </button>

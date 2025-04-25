@@ -1,0 +1,22 @@
+[
+  {
+    "_id": "67ff72a5c80b9c97ffd86f58",
+    "title": "Trello Copy",
+    "description": "This is a Trello-like application built with React and TypeScript, featuring drag-and-drop functionality using the @dnd-kit library. The app allows users to manage tasks across different statuses, such as \"Pending\", \"In Progress\", and \"Completed\".",
+    "imageUrl": "/projects/images/trello-copy.png",
+    "blurImageUrl": "/projects/images/trello-copy--blur.png",
+    "imageAlt": "Trello clone screenshot",
+    "githubUrl": "https://github.com/developerbrm/trello-copy",
+    "liveUrl": "https://developerbrm.github.io/trello-copy/"
+  },
+  {
+    "_id": "67ff7274c80b9c97ffd86f57",
+    "title": "Pokemon App",
+    "description": "This projects/is a simple React application that shows a list of Pokémon.",
+    "imageUrl": "/projects/images/pokemon-app.png",
+    "blurImageUrl": "/projects/images/pokemon-app--blur.png",
+    "imageAlt": "Pokemon App screenshot",
+    "githubUrl": "https://github.com/developerbrm/pokemon-app",
+    "liveUrl": "https://developerbrm.github.io/pokemon-app/"
+  }
+]

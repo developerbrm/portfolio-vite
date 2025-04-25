@@ -15,20 +15,6 @@ export const commonToastOptions = {
   transition: Flip,
 }
 
-export const fetchProjects = async () => {
-  let data: ProjectItem[] = []
-
-  try {
-    const res = await fetch(constructApiUrl(APP_ROUTES.GET_PROJECTS))
-    data = await res.json()
-  } catch (error) {
-    console.log(error)
-    data = []
-  }
-
-  return data
-}
-
 export const appendSlash = (str: string) =>
   str.endsWith('/') ? str : `${str}/`
 
@@ -40,4 +26,38 @@ export const constructPubicMediaUrl = (imageUrl: string) => {
   const endPoint = removeStartSlash(imageUrl)
 
   return `${baseUrl}${endPoint}`
+}
+
+export const fetchProjects = async () => {
+  let data: ProjectItem[] = []
+
+  try {
+    // const res = await fetch(constructApiUrl(APP_ROUTES.GET_PROJECTS))
+
+    const url = constructPubicMediaUrl('/projects/projects.json')
+    const res = await fetch(url)
+    data = await res.json()
+  } catch (error) {
+    console.log(error)
+    data = []
+  }
+
+  return data
+}
+
+export const pingServer = async () => {
+  const pingedServerAlready = document.body.dataset.pingedServerAlready
+
+  if (pingedServerAlready) return
+
+  try {
+    const res = await fetch(constructApiUrl(APP_ROUTES.PING_SERVER))
+    const data = await res.json()
+
+    document.body.dataset.pingedServerAlready = 'yes'
+
+    return data
+  } catch (error) {
+    console.log(error)
+  }
 }

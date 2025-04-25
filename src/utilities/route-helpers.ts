@@ -3,6 +3,7 @@ import { appendSlash, removeStartSlash } from './utilities'
 export const APP_ROUTES = {
   SUBMIT_FORM: '/submit-form',
   GET_PROJECTS: '/get-projects',
+  PING_SERVER: '/free-server-instance-bro-please-wake-up-from-the-sleep',
 }
 
 export const getServerPort = () => {

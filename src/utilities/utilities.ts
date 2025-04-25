@@ -44,3 +44,20 @@ export const fetchProjects = async () => {
 
   return data
 }
+
+export const pingServer = async () => {
+  const pingedServerAlready = document.body.dataset.pingedServerAlready
+
+  if (pingedServerAlready) return
+
+  try {
+    const res = await fetch(constructApiUrl(APP_ROUTES.PING_SERVER))
+    const data = await res.json()
+
+    document.body.dataset.pingedServerAlready = 'yes'
+
+    return data
+  } catch (error) {
+    console.log(error)
+  }
+}

@@ -66,6 +66,14 @@ serve({
         }
       },
     },
+    [APP_ROUTES.PING_SERVER]: {
+      OPTIONS: () => new Response(null, GETResponseOptions),
+      GET: async () => {
+        const message = `हाँ भाई मुझे लगता है कि मैं अब जागा हूँ या शायद मैं पहले ही जाग चुका था`
+
+        return new Response(JSON.stringify(message), GETResponseOptions)
+      },
+    },
   },
 })
 

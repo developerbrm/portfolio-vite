@@ -50,7 +50,7 @@ const RenderProjectItem = (props: Props) => {
           </h3>
           <p className="py-6">{description}</p>
 
-          <div className="grid gap-3 md:grid-flow-col md:justify-start">
+          <div className="grid gap-3 lg:grid-flow-col lg:justify-start">
             <a
               target="_blank"
               href={githubUrl}

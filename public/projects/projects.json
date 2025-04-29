@@ -2,7 +2,7 @@
   {
     "_id": "67ff72a5c80b9c97ffd86f58",
     "title": "Trello Copy",
-    "description": "This is a Trello-like application built with React and TypeScript, featuring drag-and-drop functionality using the @dnd-kit library. The app allows users to manage tasks across different statuses, such as \"Pending\", \"In Progress\", and \"Completed\".",
+    "description": "Dive into the world of project management with this open-source Trello clone. This project replicates the fundamental features of Trello, allowing users to organize tasks visually using boards, lists, and cards. With drag-and-drop functionality, it demonstrates key concepts in front-end development, state management. Explore the codebase to understand how to implement drag-and-drop interfaces and real-time updates.",
     "imageUrl": "/projects/images/trello-copy.png",
     "blurImageUrl": "/projects/images/trello-copy--blur.png",
     "imageAlt": "Trello clone screenshot",
@@ -12,7 +12,7 @@
   {
     "_id": "67ff7274c80b9c97ffd86f57",
     "title": "Pokemon App",
-    "description": "This projects/is a simple React application that shows a list of Pokémon.",
+    "description": "Catch 'em all (virtually!) with this engaging Pokémon application. Utilizing the Pokémon API, this project allows users to explore the rich world of Pokémon. You can browse through different generations, search for specific Pokémon, and view detailed information about each creature, including their stats, abilities, and evolutionary line. Built with React, TypeScript, and Tailwind CSS, this project showcases how to fetch and display data from external APIs and create a dynamic user interface.",
     "imageUrl": "/projects/images/pokemon-app.png",
     "blurImageUrl": "/projects/images/pokemon-app--blur.png",
     "imageAlt": "Pokemon App screenshot",

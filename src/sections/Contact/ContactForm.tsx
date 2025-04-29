@@ -20,6 +20,7 @@ const ContactSchema = z.object({
     .min(5, { message: 'Must be 5 or more characters long' })
     .max(500, { message: 'Must be 500 or less characters long' }),
   website: z.string().nullable().optional(),
+  createdAt: z.date().optional(),
 })
 
 export type ContactFormValues = z.infer<typeof ContactSchema>
@@ -35,6 +36,7 @@ const ContactForm = () => {
     const body = {
       ...data,
       website: window.location.href,
+      createdAt: new Date().toString(),
     }
 
     await axios

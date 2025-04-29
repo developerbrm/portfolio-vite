@@ -20,7 +20,7 @@ This is a personal portfolio website built using [Vite](https://vitejs.dev/). Th
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/portfolio-vite.git
+git clone https://github.com/developerbrm/portfolio-vite.git
 ```
 
 2. Navigate to the project directory:

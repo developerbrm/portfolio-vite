@@ -5,7 +5,23 @@ if (!mongoClient) {
   throw new Error('MongoDB client is not connected')
 }
 
-const projectsCollection = mongoClient.db(DB_NAME).collection('Projects')
-export const projects = (await projectsCollection.find().toArray()).map(
-  (doc) => ({ ...doc, _id: doc._id.toString() }) as ProjectItem
-)
+export const getProjects = async () => {
+  let projects: ProjectItem[] = []
+
+  console.log('Fetching projects from MongoDB')
+
+  await mongoClient
+    .connect()
+    .then((client) => client.db(DB_NAME).collection('Projects'))
+    .then((collection) => collection.find().toArray())
+    .then(
+      (data) =>
+        (projects = data.map(
+          (doc) => ({ ...doc, _id: doc._id.toString() }) as ProjectItem
+        ))
+    )
+    .catch(console.error)
+    .finally(() => mongoClient?.close())
+
+  return projects
+}

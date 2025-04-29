@@ -7,9 +7,9 @@ import {
   getServerPort,
   POSTResponseOptions,
 } from '../src/utilities/route-helpers'
-import { sendMail } from './emailer'
-import { projects } from './db/projects'
+import { getProjects } from './db/projects'
 import type { ProjectItem } from './db/projects.model'
+import { sendMail } from './emailer'
 
 const port = getServerPort()
 
@@ -53,7 +53,7 @@ serve({
         let data: ProjectItem[] = []
 
         try {
-          data = projects
+          data = await getProjects()
 
           return new Response(JSON.stringify(data), GETResponseOptions)
         } catch (err) {

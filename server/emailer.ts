@@ -1,6 +1,7 @@
 import nodemailer from 'nodemailer'
 import type { ContactFormValues } from '../src/sections/Contact/ContactForm'
 import { capitalize } from '../src/utilities/utilities'
+import { DB_NAME, mongoClient } from './db'
 
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
@@ -20,6 +21,17 @@ transporter.verify(function (error) {
   }
 })
 
+const sendDataToMongoDB = async (data: ContactFormValues) => {
+  const collection = mongoClient?.db(DB_NAME).collection('FormSubmissions')
+
+  console.log('Sending form data to MongoDB')
+
+  collection
+    ?.insertOne(data)
+    .then((res) => console.log(res))
+    .catch(console.error)
+}
+
 export async function sendMail(data: ContactFormValues) {
   const message = {
     from: '"Form submitted | Portfolio site 👻" <dev.brm.acc@gmail.com>',
@@ -27,6 +39,8 @@ export async function sendMail(data: ContactFormValues) {
     subject: `Message from ${data.name}`,
     html: ``,
   }
+
+  sendDataToMongoDB(data).catch(console.error)
 
   let html = ``
 

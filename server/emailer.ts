@@ -24,13 +24,10 @@ transporter.verify(function (error) {
 const sendDataToMongoDB = async (data: ContactFormValues) => {
   console.log('Sending form data to MongoDB')
 
-  const collection = await mongoClient
+  mongoClient
     .connect()
-    .then((client) => client.db(DB_NAME).collection('Messages'))
-    .catch(console.error)
-
-  collection
-    ?.insertOne(data)
+    .then((client) => client.db(DB_NAME).collection('FormSubmissions'))
+    .then((collection) => collection.insertOne(data))
     .then((res) => console.log(res))
     .catch(console.error)
     .finally(() => mongoClient?.close())

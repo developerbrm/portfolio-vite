@@ -17,3 +17,5 @@ export const mongoClient: MongoClient | null =
       return client
     })
     .catch(console.error)) ?? null
+
+export const DB_NAME = 'Portfolio'

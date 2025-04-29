@@ -7,15 +7,6 @@ if (!MONGODB_URI) {
   )
 }
 
-console.log('Trying to connect to MongoDB')
-
-export const mongoClient: MongoClient | null =
-  (await MongoClient.connect(MONGODB_URI)
-    .then((client) => {
-      console.log('Connected to MongoDB')
-
-      return client
-    })
-    .catch(console.error)) ?? null
+export const mongoClient = new MongoClient(MONGODB_URI)
 
 export const DB_NAME = 'Portfolio'

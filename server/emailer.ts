@@ -22,14 +22,15 @@ transporter.verify(function (error) {
 })
 
 const sendDataToMongoDB = async (data: ContactFormValues) => {
-  const collection = mongoClient?.db(DB_NAME).collection('FormSubmissions')
-
   console.log('Sending form data to MongoDB')
 
-  collection
-    ?.insertOne(data)
+  mongoClient
+    .connect()
+    .then((client) => client.db(DB_NAME).collection('FormSubmissions'))
+    .then((collection) => collection.insertOne(data))
     .then((res) => console.log(res))
     .catch(console.error)
+    .finally(() => mongoClient?.close())
 }
 
 export async function sendMail(data: ContactFormValues) {

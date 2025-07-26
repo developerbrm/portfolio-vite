@@ -4,15 +4,15 @@
   "type": "module",
   "private": true,
   "devDependencies": {
-    "@types/bun": "^1.2.9"
+    "@types/bun": "^1.2.19"
   },
   "peerDependencies": {
     "typescript": "^5.8.3"
   },
   "dependencies": {
     "@types/nodemailer": "^6.4.17",
-    "bun": "^1.2.9",
-    "mongodb": "^6.15.0",
-    "nodemailer": "^6.10.0"
+    "bun": "^1.2.19",
+    "mongodb": "^6.18.0",
+    "nodemailer": "^6.10.1"
   }
 }

@@ -8,8 +8,8 @@ import {
   POSTResponseOptions,
 } from '../src/utilities/route-helpers'
 import { getProjects } from './db/projects'
-import type { ProjectItem } from './db/projects.model'
 import { sendMail } from './utilities'
+import type { ProjectItem } from './types'
 
 const port = getServerPort()
 

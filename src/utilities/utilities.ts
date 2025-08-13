@@ -1,5 +1,5 @@
 import { Flip } from 'react-toastify'
-import type { ProjectItem } from '../../server/db/projects.model'
+import type { ProjectItem } from '../../server/types'
 import { ContactFormValues } from '../sections/Contact/ContactForm'
 import { APP_ROUTES, constructApiUrl } from '../utilities/route-helpers'
 import { formFieldsArr } from './constants'

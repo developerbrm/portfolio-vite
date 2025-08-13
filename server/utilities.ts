@@ -2,6 +2,7 @@ import nodemailer from 'nodemailer'
 import type { ContactFormValues } from '../src/sections/Contact/ContactForm'
 import { capitalize } from '../src/utilities/utilities'
 import { DB_NAME, mongoClient } from './db'
+import type { PageVisitsInfo } from './types'
 
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',

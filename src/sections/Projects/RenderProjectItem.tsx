@@ -1,5 +1,5 @@
 import { FiExternalLink } from 'react-icons/fi'
-import type { ProjectItem } from '../../../server/db/projects.model'
+import type { ProjectItem } from '../../../server/types'
 import RenderImage from './RenderImage'
 
 interface Props {

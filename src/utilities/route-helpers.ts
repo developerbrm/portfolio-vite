@@ -4,6 +4,7 @@ export const APP_ROUTES = {
   SUBMIT_FORM: '/submit-form',
   GET_PROJECTS: '/get-projects',
   PING_SERVER: '/free-server-instance-bro-please-wake-up-from-the-sleep',
+  GET_PAGE_VISIT_INFO: '/get-page-visit-info',
 }
 
 export const getServerPort = () => {

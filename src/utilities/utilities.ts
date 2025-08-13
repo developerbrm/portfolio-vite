@@ -1,5 +1,6 @@
+import axios from 'axios'
 import { Flip } from 'react-toastify'
-import type { ProjectItem } from '../../server/db/projects.model'
+import type { PageVisitInfo, ProjectItem } from '../../server/types'
 import { ContactFormValues } from '../sections/Contact/ContactForm'
 import { APP_ROUTES, constructApiUrl } from '../utilities/route-helpers'
 import { formFieldsArr } from './constants'
@@ -60,4 +61,40 @@ export const pingServer = async () => {
   } catch (error) {
     console.log(error)
   }
+}
+
+export const sendPageInfo = () => {
+  if (sessionStorage.getItem('visited')) return
+
+  const cb = () => {
+    const url = constructApiUrl(APP_ROUTES.GET_PAGE_VISIT_INFO)
+    const data: PageVisitInfo = {
+      userAgent: navigator.userAgent,
+      language: navigator.language,
+      languages: navigator.languages,
+      referrer: document.referrer,
+      timestamp: new Date().toString(),
+      url: window.location.href,
+      platform: navigator?.platform ?? null,
+      height: window.innerHeight,
+      width: window.innerWidth,
+      screenOrientation: window.screen.orientation.type,
+      deviceMemory:
+        'deviceMemory' in navigator ? Number(navigator.deviceMemory) : null,
+      connection:
+        'connection' in navigator
+          ? (navigator.connection as { effectiveType: string | null })
+              ?.effectiveType
+          : null,
+    }
+
+    axios
+      .post(url, data)
+      .then(() => {
+        sessionStorage.setItem('visited', 'true')
+      })
+      .catch((err) => console.error(err))
+  }
+
+  document.addEventListener('DOMContentLoaded', cb)
 }

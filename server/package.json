@@ -3,15 +3,19 @@
   "module": "index.ts",
   "type": "module",
   "private": true,
+  "scripts": {
+    "dev": "bun --watch index.ts",
+    "start": "bun index.ts"
+  },
   "devDependencies": {
-    "@types/bun": "^1.2.19"
+    "@types/bun": "^1.2.20"
   },
   "peerDependencies": {
     "typescript": "^5.8.3"
   },
   "dependencies": {
     "@types/nodemailer": "^6.4.17",
-    "bun": "^1.2.19",
+    "bun": "^1.2.20",
     "mongodb": "^6.18.0",
     "nodemailer": "^6.10.1"
   }

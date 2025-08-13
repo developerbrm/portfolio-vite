@@ -8,8 +8,8 @@ import {
   POSTResponseOptions,
 } from '../src/utilities/route-helpers'
 import { getProjects } from './db/projects'
-import type { ProjectItem } from './db/projects.model'
-import { sendMail } from './emailer'
+import { sendMail, sendPageVisitInfo } from './utilities'
+import type { PageVisitInfo, ProjectItem } from './types'
 
 const port = getServerPort()
 
@@ -72,6 +72,26 @@ serve({
         const message = `हाँ भाई मुझे लगता है कि मैं अब जागा हूँ या शायद मैं पहले ही जाग चुका था`
 
         return new Response(JSON.stringify(message), GETResponseOptions)
+      },
+    },
+
+    [APP_ROUTES.GET_PAGE_VISIT_INFO]: {
+      OPTIONS: () => new Response(null, POSTResponseOptions),
+      POST: async (req: BunRequest) => {
+        try {
+          const data = (await req.json()) as PageVisitInfo
+          await sendPageVisitInfo(data)
+        } catch (error) {
+          console.log(error)
+
+          return new Response('Failed to get page visit info', {
+            ...POSTResponseOptions,
+            status: 500,
+          })
+        }
+
+        const message = `Page visit info sent successfully`
+        return new Response(JSON.stringify(message), POSTResponseOptions)
       },
     },
   },

@@ -1,5 +1,5 @@
 import { DB_NAME, mongoClient } from '.'
-import type { ProjectItem } from './projects.model'
+import type { ProjectItem } from '../types'
 
 if (!mongoClient) {
   throw new Error('MongoDB client is not connected')

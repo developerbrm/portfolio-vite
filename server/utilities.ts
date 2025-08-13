@@ -2,6 +2,7 @@ import nodemailer from 'nodemailer'
 import type { ContactFormValues } from '../src/sections/Contact/ContactForm'
 import { capitalize } from '../src/utilities/utilities'
 import { DB_NAME, mongoClient } from './db'
+import type { PageVisitInfo } from './types'
 
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
@@ -21,7 +22,7 @@ transporter.verify(function (error) {
   }
 })
 
-const sendDataToMongoDB = async (data: ContactFormValues) => {
+const sendFormDataToMongoDB = async (data: ContactFormValues) => {
   console.log('Sending form data to MongoDB')
 
   mongoClient
@@ -41,7 +42,7 @@ export async function sendMail(data: ContactFormValues) {
     html: ``,
   }
 
-  sendDataToMongoDB(data).catch(console.error)
+  sendFormDataToMongoDB(data).catch(console.error)
 
   let html = ``
 
@@ -62,4 +63,14 @@ export async function sendMail(data: ContactFormValues) {
 
     throw new Error('Failed to send email')
   }
+}
+
+export const sendPageVisitInfo = async (data: PageVisitInfo) => {
+  mongoClient
+    .connect()
+    .then((client) => client.db(DB_NAME).collection('PageVisits'))
+    .then((collection) => collection.insertOne(data))
+    .then((res) => console.log(res))
+    .catch(console.error)
+    .finally(() => mongoClient?.close())
 }

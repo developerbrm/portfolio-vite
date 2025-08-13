@@ -9,7 +9,7 @@ import {
 } from '../src/utilities/route-helpers'
 import { getProjects } from './db/projects'
 import type { ProjectItem } from './db/projects.model'
-import { sendMail } from './emailer'
+import { sendMail } from './utilities'
 
 const port = getServerPort()
 

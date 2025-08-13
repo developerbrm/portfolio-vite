@@ -21,7 +21,7 @@ transporter.verify(function (error) {
   }
 })
 
-const sendDataToMongoDB = async (data: ContactFormValues) => {
+const sendFormDataToMongoDB = async (data: ContactFormValues) => {
   console.log('Sending form data to MongoDB')
 
   mongoClient
@@ -41,7 +41,7 @@ export async function sendMail(data: ContactFormValues) {
     html: ``,
   }
 
-  sendDataToMongoDB(data).catch(console.error)
+  sendFormDataToMongoDB(data).catch(console.error)
 
   let html = ``
 

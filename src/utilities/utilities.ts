@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import { Flip } from 'react-toastify'
 import type { PageVisitInfo, ProjectItem } from '../../server/types'
 import { ContactFormValues } from '../sections/Contact/ContactForm'
@@ -63,38 +63,65 @@ export const pingServer = async () => {
   }
 }
 
-export const sendPageInfo = () => {
-  if (sessionStorage.getItem('visited')) return
+const eventsArr: string[] = [
+  'scroll',
+  'mousemove',
+  'keydown',
+  'wheel',
+  'touchstart',
+  'click',
+  'load',
+  'DOMContentLoaded',
+]
 
-  const cb = () => {
-    const url = constructApiUrl(APP_ROUTES.GET_PAGE_VISIT_INFO)
-    const data: PageVisitInfo = {
-      userAgent: navigator.userAgent,
-      language: navigator.language,
-      languages: navigator.languages,
-      referrer: document.referrer,
-      timestamp: new Date().toString(),
-      url: window.location.href,
-      platform: navigator?.platform ?? null,
-      height: window.innerHeight,
-      width: window.innerWidth,
-      screenOrientation: window.screen.orientation.type,
-      deviceMemory:
-        'deviceMemory' in navigator ? Number(navigator.deviceMemory) : null,
-      connection:
-        'connection' in navigator
-          ? (navigator.connection as { effectiveType: string | null })
-              ?.effectiveType
-          : null,
-    }
+const addEvents = (cb: (event: string) => void) =>
+  eventsArr.forEach((event) =>
+    document.addEventListener(event, () => cb(event), { once: true })
+  )
 
-    axios
-      .post(url, data)
-      .then(() => {
-        sessionStorage.setItem('visited', 'true')
-      })
-      .catch((err) => console.error(err))
+const removeEvents = (cb: (event: string) => void) =>
+  eventsArr.forEach((event) =>
+    document.removeEventListener(event, () => cb(event))
+  )
+
+const onEventCB = (event: string) => {
+  if (sessionStorage.getItem('visited')) {
+    removeEvents(onEventCB)
+    return
   }
 
-  document.addEventListener('DOMContentLoaded', cb)
+  sessionStorage.setItem('visited', 'true')
+
+  const url = constructApiUrl(APP_ROUTES.GET_PAGE_VISIT_INFO)
+  const data: PageVisitInfo = {
+    userAgent: navigator.userAgent,
+    language: navigator.language,
+    languages: navigator.languages,
+    referrer: document.referrer,
+    timestamp: new Date().toString(),
+    url: window.location.href,
+    platform: navigator?.platform ?? null,
+    height: window.innerHeight,
+    width: window.innerWidth,
+    screenOrientation: window.screen.orientation.type,
+    deviceMemory:
+      'deviceMemory' in navigator ? Number(navigator.deviceMemory) : null,
+    connection:
+      'connection' in navigator
+        ? (navigator.connection as { effectiveType: string | null })
+            ?.effectiveType
+        : null,
+    triggeredBy: event,
+  }
+
+  axios
+    .post(url, data)
+    .then((res: AxiosResponse) => {
+      console.log(res.data)
+    })
+    .catch((err) => console.error(err))
+}
+
+export const sendPageInfo = () => {
+  addEvents(onEventCB)
 }

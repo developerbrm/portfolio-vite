@@ -1,16 +1,16 @@
-export interface PageVisitsInfo {
+export interface PageVisitInfo {
   userAgent: string
   language: string
-  languages: string[]
+  languages: readonly string[]
   referrer: string
-  timestamp: Date
+  timestamp: string
   url: string
-  platform: string
+  platform: string | null
   height: number
   width: number
   screenOrientation: string
-  deviceMemory: number
-  connection: string
+  deviceMemory: number | null
+  connection: string | null
 }
 
 export interface ProjectItem {

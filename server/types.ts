@@ -11,7 +11,7 @@ export interface PageVisitInfo {
   screenOrientation: string
   deviceMemory: number | null
   connection: string | null
-  triggeredBy: string
+  triggeredBy?: string
 }
 
 export interface ProjectItem {

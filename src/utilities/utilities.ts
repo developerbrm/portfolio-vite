@@ -63,32 +63,8 @@ export const pingServer = async () => {
   }
 }
 
-const eventsArr: string[] = [
-  'scroll',
-  'mousemove',
-  'keydown',
-  'wheel',
-  'touchstart',
-  'click',
-  'load',
-  'DOMContentLoaded',
-]
-
-const addEvents = (cb: (event: string) => void) =>
-  eventsArr.forEach((event) =>
-    document.addEventListener(event, () => cb(event), { once: true })
-  )
-
-const removeEvents = (cb: (event: string) => void) =>
-  eventsArr.forEach((event) =>
-    document.removeEventListener(event, () => cb(event))
-  )
-
-const onEventCB = (event: string) => {
-  if (sessionStorage.getItem('visited')) {
-    removeEvents(onEventCB)
-    return
-  }
+export const sendPageInfo = () => {
+  if (sessionStorage.getItem('visited')) return
 
   sessionStorage.setItem('visited', 'true')
 
@@ -111,7 +87,6 @@ const onEventCB = (event: string) => {
         ? (navigator.connection as { effectiveType: string | null })
             ?.effectiveType
         : null,
-    triggeredBy: event,
   }
 
   axios
@@ -120,8 +95,4 @@ const onEventCB = (event: string) => {
       console.log(res.data)
     })
     .catch((err) => console.error(err))
-}
-
-export const sendPageInfo = () => {
-  addEvents(onEventCB)
 }

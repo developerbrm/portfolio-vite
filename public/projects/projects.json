@@ -13,7 +13,7 @@
     "_id": "67ff7274c80b9c97ffd86f57",
     "title": "Pokemon App",
     "description": "Catch 'em all (virtually!) with this engaging Pokémon application. Utilizing the Pokémon API, this project allows users to explore the rich world of Pokémon. You can browse through different generations, search for specific Pokémon, and view detailed information about each creature, including their stats, abilities, and evolutionary line. Built with React, TypeScript, and Tailwind CSS, this project showcases how to fetch and display data from external APIs and create a dynamic user interface.",
-    "imageUrl": "/projects/images/pokemon-app.png",
+    "imageUrl": "/projects/images/pokemon-app.jpg",
     "blurImageUrl": "/projects/images/pokemon-app--blur.png",
     "imageAlt": "Pokemon App screenshot",
     "githubUrl": "https://github.com/developerbrm/pokemon-app",

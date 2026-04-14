@@ -6,8 +6,6 @@ import type { PageVisitInfo } from './types'
 
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
-  secure: true,
-  port: 465,
   auth: {
     user: import.meta.env.EMAIL_USER,
     pass: import.meta.env.EMAIL_PASSWORD,

@@ -24,14 +24,14 @@ serve({
             .json()
             .catch(console.error)) as ContactFormValues
 
-          await sendMail(data)
-
           if (!Object.keys(data).length) {
             return new Response('No data received', {
               ...POSTResponseOptions,
               status: 400,
             })
           }
+
+          await sendMail(data).catch(console.error)
 
           return new Response(
             'Form submitted successfully',

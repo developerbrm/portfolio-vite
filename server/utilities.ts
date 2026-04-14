@@ -18,7 +18,7 @@ transporter.verify(function (error) {
   if (error) {
     console.log(error)
   } else {
-    console.log('Server is ready to take our messages')
+    console.log('NodeMailer is ready to send emails')
   }
 })
 
@@ -55,13 +55,14 @@ export async function sendMail(data: ContactFormValues) {
   try {
     const info = await transporter.sendMail(message)
 
-    if (!info.accepted) throw new Error('Failed to send email')
+    console.log(info)
+    if (!info.accepted) throw new Error('Info not accepted')
 
     return info
   } catch (error) {
-    console.log(error)
+    console.error(error)
 
-    throw new Error('Failed to send email')
+    throw new Error('NodeMailer transporter error')
   }
 }
 
